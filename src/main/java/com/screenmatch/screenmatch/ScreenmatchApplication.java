@@ -4,9 +4,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.screenmatch.screenmatch.model.DadosSerie;
-import com.screenmatch.screenmatch.services.ConsumoApi;
-import com.screenmatch.screenmatch.services.ConverteDados;
+import com.screenmatch.screenmatch.principal.Principal;
 
 @SpringBootApplication
 public class ScreenmatchApplication implements CommandLineRunner{
@@ -17,17 +15,8 @@ public class ScreenmatchApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		ConsumoApi consumoApi = new ConsumoApi();
-		String json = consumoApi.obterDados("http://www.omdbapi.com/?t=gilmore+girls&apikey=ee527ba6");
-		//System.out.println(json);//debbug
-
-		// Convertendo o JSON para um objeto
-		ConverteDados conversor = new ConverteDados();
-		DadosSerie dados = conversor.obterDados(json, DadosSerie.class);
-		System.out.println(dados);
-
-		//json = consumoApi.obterDados("https://coffee.alexflipnote.dev/random.json");
-		//System.out.println(json);
+		Principal principal = new Principal();
+		principal.menu();
 	}
 
 }
